@@ -1,0 +1,28 @@
+<header>
+  <nav class="navbar" [class.scrolled]="isScrolled">
+    <a routerLink="/" class="logo" (click)="closeMenu()">
+      <img src="imgs/logo.png" alt="Asmaa Logo" class="logo-img">
+    </a>
+
+    <ul class="nav-links" [class.active]="menuOpen">
+      @for (link of links; track link.path) {
+        <li>
+          <a
+            [routerLink]="link.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="link.exact ? { exact: true } : { exact: false }"
+            (click)="closeMenu()"
+          >
+            {{ link.label }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <button class="menu-toggle" type="button" [class.active]="menuOpen" aria-label="Toggle navigation" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>

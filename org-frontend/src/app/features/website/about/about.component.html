@@ -1,0 +1,44 @@
+<main class="hero">
+  <div class="hero-text">
+    <h1 class="h1">About Me</h1>
+    <p class="hero-p">{{ about.bio }}</p>
+  </div>
+
+  <div class="experience">
+    <span class="one">{{ about.stats?.yearsExperience }}</span>
+    <span class="year">Years of Experience</span>
+    <span class="twenty">{{ about.stats?.projectsCompleted }}</span>
+    <span class="year">Projects Completed</span>
+  </div>
+</main>
+
+<h2 class="hidden">My Experiences</h2>
+<section class="training">
+  <div class="training-cards hidden" *ngFor="let item of experiences">
+    <h3>{{ item.role }}</h3>
+    <ul>
+      <li>{{ item.company }}</li>
+      <li>{{ item.duration }}</li>
+      <li>{{ item.location }}</li>
+    </ul>
+  </div>
+</section>
+
+<h2 class="hidden">Skills & Technologies</h2>
+<section class="skills">
+  <div class="skills-cards hidden" *ngFor="let group of skills">
+    <h3>{{ group.categoryName }}</h3>
+    <ul>
+      <li *ngFor="let skill of group.technologies">{{ skill }}</li>
+    </ul>
+  </div>
+</section>
+
+<h2 class="hidden">What I Value</h2>
+<section class="value">
+  <div class="value-cards hidden" *ngFor="let value of values">
+    <i [class]="value.icon + ' value-icons'" aria-hidden="true"></i>
+    <h3>{{ value.title }}</h3>
+    <p>{{ value.description }}</p>
+  </div>
+</section>

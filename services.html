@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/nav-footer.css" />
+    <link rel="stylesheet" href="assets/css/services.css" />
+  </head>
+
+  <body>
+
+     <header>
+      <nav class="navbar">
+        <a href="home.html" class="logo">
+          <img src="assets/img/logo.png" alt="Asmaa Logo" class="logo-img" />
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    
+    <main class="hero">
+      <section class="hero-text">
+        <h1>Services I Offer</h1>
+        <p class="hero-p">
+          Professional web development services tailored to bring your ideas to
+          life with quality, creativity, and attention to detail.
+        </p>
+      </section>
+      <section class="cards">
+
+        <div class="card hidden">
+          <i class="fa fa-code value-icons" aria-hidden="true"></i>
+          <h2>Front-End Development</h2>
+          <p>
+            Building responsive, high-performance user interfaces using modern
+            frameworks like Angular and React, with a focus on clean UI/UX and
+            best practices.
+          </p>
+        </div>
+
+        <div class="card hidden">
+          <i class="fa fa-server value-icons" aria-hidden="true"></i>
+          <h2>Back-End Development</h2>
+          <p>
+            Developing scalable and efficient server-side applications using
+            Node.js, building RESTful APIs, handling databases, and ensuring
+            performance and security.
+          </p>
+        </div>
+
+        <div class="card hidden">
+          <i class="fa-solid fa-palette value-icons"></i>
+          <h2>UI/UX Design</h2>
+          <p>
+            Creating intuitive and beautiful user interfaces with focus on user
+            experience and accessibility.
+          </p>
+        </div>
+
+        <div class="card hidden">
+          <i class="fa-regular fa-lightbulb value-icons"></i>
+          <h2>Frontend Consulting</h2>
+          <p>
+            Providing expert advice on frontend architecture, performance
+            optimization, and best practices.
+          </p>
+        </div>
+
+        <div class="card hidden">
+          <i class="fa-solid fa-magnifying-glass value-icons"></i>
+          <h2>Code Review</h2>
+          <p>
+            Thorough code reviews to improve code quality, maintainability, and
+            performance.
+          </p>
+        </div>
+      </section>
+      <div class="start-project">
+        <h2>Ready to Start Your Project?</h2>
+        <p>Let's collaborate to create something amazing. Get in touch to discuss
+           your project and how I can help bring your vision to life.</p>
+           <section class="box">
+
+           <div class="get-in-touch">
+            <a 
+            href="contact.html">Get In Touch
+          <i class="fa fa-heart heart-icon" aria-hidden="true"></i></a>
+            
+           </div>
+           </section>
+      </div>
+    </main>
+
+
+
+    <footer class="fofo">
+      <a href="home.html" class="logo">
+        <img src="assets/img/logo.png" alt="Asmaa Logo" />
+      </a>
+      <p>
+        Full Stack Developer crafting beautiful and functional web experiences.
+      </p>
+      <!-- <hr class="hr"> -->
+      <!-- <h3 class="quicklinks">Quick Links</h3>  -->
+      <ul class="footpages">
+        <li><a href="index.html">Home</a></li>
+        <i class="fa fa-heart heart-icon" aria-hidden="true"></i>
+        <li><a href="about.html">About</a></li>
+        <i class="fa fa-heart heart-icon" aria-hidden="true"></i>
+        <li><a href="projects.html">Projects</a></li>
+        <i class="fa fa-heart heart-icon" aria-hidden="true"></i>
+        <li><a href="services.html">Services</a></li>
+        <i class="fa fa-heart heart-icon" aria-hidden="true"></i>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <!-- <hr class="hr"> -->
+      <h3 class="footbold ready">Ready To Work With Me ?</h3>
+      <div class="scroll-down">
+        <i class="fa-solid fa-chevron-down"></i>
+        <i class="fa-solid fa-chevron-down"></i>
+        <i class="fa-solid fa-chevron-down"></i>
+      </div>
+      <br />
+
+      <a href="contact.html" class="b2">
+        Let's Get In Touch
+        <i class="fa fa-heart heart-icon" aria-hidden="true"></i>
+      </a>
+      <br /><br />
+      <p class="footpara">© 2026 Asmaa. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const links = document.querySelectorAll(".nav-links a");
+
+      // active link logic
+      links.forEach((link) => {
+        if (window.location.pathname.endsWith(link.getAttribute("href"))) {
+          link.classList.add("active");
+        }
+      });
+
+      // navbar scroll effect
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+      const menu = document.querySelector(".menu-toggle");
+      const nav = document.querySelector(".nav-links");
+
+      menu.addEventListener("click", () => {
+        nav.classList.toggle("active");
+        menu.classList.toggle("active");
+      });
+      const elements = document.querySelectorAll(".hidden");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+            } else {
+              entry.target.classList.remove("show");
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+        },
+      );
+
+      elements.forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

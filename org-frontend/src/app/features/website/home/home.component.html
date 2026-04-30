@@ -1,0 +1,42 @@
+<main class="home-hero">
+  <div class="hero-left">
+    <div class="hero-text">
+      <h4 class="h2home">{{ home.jobTitle }}</h4>
+      <h1 class="h1">Hi, I'm <span class="name">{{ home.name }}</span></h1>
+      <p class="phome">{{ home.mainDescription }}</p>
+    </div>
+
+    <div class="homebuttons hidden">
+      <a routerLink="/projects" class="viewmywork b1">View My Work</a>
+      <a routerLink="/contact" class="getintouch b2">Get In Touch</a>
+    </div>
+
+    <div class="social-icons hidden">
+      <a class="githubhome" [href]="home.socialLinks?.github" title="Github" target="_blank" rel="noreferrer">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a class="linkedinhome" [href]="home.socialLinks?.linkedin" title="LinkedIn" target="_blank" rel="noreferrer">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+      <a class="emailhome" routerLink="/contact" title="Email">
+        <i class="fa-solid fa-envelope"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-image hero-right hidden">
+    <img [src]="home.profileImage" alt="Asmaa">
+  </div>
+</main>
+
+<section class="whatido">
+  <h2 class="what">What I Do</h2>
+  <p>Front-End Developer crafting modern, responsive web interfaces with clean and user-friendly designs.</p>
+
+  @for (item of work; track item.title) {
+    <div class="whatidocards hidden">
+      <h2>{{ item.title }}</h2>
+      <p>{{ item.description }}</p>
+    </div>
+  }
+</section>

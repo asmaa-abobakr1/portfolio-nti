@@ -1,0 +1,22 @@
+<main class="hero">
+  <section class="hero-text">
+    <h1>{{ hero.title }}</h1>
+    <p class="hero-p">{{ hero.subtitle }}</p>
+  </section>
+
+  <section class="cards">
+    <article class="card hidden" *ngFor="let service of services">
+      <i [class]="(service.icon || 'fa fa-code') + ' value-icons'" aria-hidden="true"></i>
+      <h2>{{ service.title }}</h2>
+      <p>{{ service.description }}</p>
+    </article>
+  </section>
+
+  <section class="start-project">
+    <h2>{{ footerAction.title }}</h2>
+    <p>{{ footerAction.description }}</p>
+    <div class="get-in-touch">
+      <a routerLink="/contact">Get In Touch <i class="fa fa-heart heart-icon" aria-hidden="true"></i></a>
+    </div>
+  </section>
+</main>

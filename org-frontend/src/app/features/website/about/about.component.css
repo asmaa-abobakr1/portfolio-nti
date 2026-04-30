@@ -1,0 +1,40 @@
+.hero { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 40px; margin-top: 50px; }
+.h1 { color: var(--primary-color); font-size: 4.5rem; font-style: italic; }
+.hero-p { line-height: 1.6; font-size: 0.9rem; color: #9f9999; text-align: start; }
+.hero-text { width: 50%; }
+.experience { background: linear-gradient(135deg, #bdbbea, #fff); width: 50%; padding: 20px; display: flex; flex-direction: column; gap: 10px; color: black; border-radius: 15px; text-align: center; }
+.one { color: var(--primary-color); font-size: 3.5rem; font-weight: bold; margin: 10px; }
+.year { font-size: 1.2rem; margin: 10px; }
+.twenty { font-size: 2.8rem; font-weight: bold; margin: 10px; }
+h2 { font-size: 2rem; padding: 50px; font-style: italic; font-weight: bold; }
+.training, .skills, .value { display: flex; flex-wrap: wrap; gap: 20px; }
+.training-cards, .skills-cards, .value-cards { background-color: #fff; padding: 20px; border-radius: 15px; transition: transform 0.3s ease; border: 2px solid transparent; }
+.skills-cards, .value-cards { padding: 50px; }
+.training-cards:hover, .skills-cards:hover, .value-cards:hover { transform: scale(1.05); border: 2px solid var(--primary-color); box-shadow: 0 10px 25px rgba(136, 133, 199, 0.3); }
+.training-cards h3, .skills-cards h3 { color: var(--primary-color); font-size: 1rem; padding-bottom: 15px; }
+.training-cards li { padding: 15px; list-style: none; }
+.skills-cards li { padding: 10px; }
+.skills-cards li::marker { color: var(--primary-color); }
+.value-icons { color: var(--primary-color); background-color: #b6b4dc6f; padding: 10px; border-radius: 5px; font-size: 1.5rem; margin-bottom: 18px; }
+.value-cards h3 { font-size: 1.4rem; padding: 10px; }
+@media (max-width: 575px) {
+  .hero { padding-top: 80px; flex-direction: column; }
+  .h1 { font-size: 2.8rem; }
+  .hero-text, .experience { width: 100%; }
+  h2 { font-size: 1.5rem; text-align: center; }
+  .training-cards, .skills-cards, .value-cards { width: 90%; margin-left: 5%; border: 1.8px solid var(--primary-color); }
+}
+@media (min-width: 576px) and (max-width: 991px) {
+  .h1 { font-size: 3.2rem; }
+  .hero-p { font-size: 0.8rem; }
+  .experience { height: 75vh; }
+  h2 { text-align: center; font-size: 2rem; }
+  .training-cards, .skills-cards, .value-cards { width: 45%; margin-left: 2.5%; border: 1.5px solid var(--primary-color); }
+}
+@media (min-width: 992px) {
+  .h1 { padding-right: 15%; }
+  h2 { text-align: center; font-size: 3rem; }
+  .training-cards { width: 22%; margin-left: 1%; }
+  .skills-cards { width: 21%; margin-left: 2%; }
+  .value-cards { width: 28%; margin-bottom: 2%; margin-left: 20px; }
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asmaa-Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/nav-footer.css">
+</head>
+
+<body> 
+    <header>
+        <nav class="navbar">
+            <a href="home.html" class="logo">
+                <img src="assets/img/logo.png" alt="Asmaa Logo" class="logo-img">
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+
+    <main class="hero">
+        <div class="hero-left">
+            <div class="hero-text">
+                <h4 class="h2home ">FRONTEND DEVELOPER</h4>
+                <h1 class="h1 ">Hi, I'm <span class="name">Asmaa</span></h1>
+                <p class="phome ">I craft beautiful, functional, and user-friendly web experiences <br>with modern
+                    technologies and creative design.</p>
+            </div>
+
+            <div class="homebuttons hidden">
+                <a href="projects.html" class="viewmywork b1 ">
+                    View My Work
+                </a>
+                <a href="contact.html" class="getintouch b2 ">
+                    Get In Touch
+                </a>
+            </div>
+
+            <div class="social-icons hidden">
+
+                <a class="githubhome" href="https://github.com/asmaa-abobakr1" title="Github" target="_blank">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+
+                <a class="linkedinhome" href="https://linkedin.com/in/asmaa-abobakr1" title="LinkedIn" target="_blank">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+
+                <a class="emailhome" href="contact.html" title="Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+
+
+            </div>
+        </div>
+
+            <div class="hero-image hero-right hidden">
+                <img src="assets/img/Personal-Photo.jpeg" alt="Asmaa">
+            </div>
+        
+        <!-- </div> -->
+    </main>
+    <!-- <hr class="line"> -->
+
+
+    <section class="whatido">
+        <h2 class="what">What I Do</h2>
+        <p>Front-End Developer crafting modern, responsive web interfaces with clean and user-friendly designs.</p>
+
+        <div class="whatidocards hidden">
+            <h2>Front-End Development</h2>
+            <p>Building responsive, performant web applications with React, TypeScript, and modern CSS frameworks.
+            </p>
+        </div>
+
+        <div class="whatidocards hidden">
+            <h2>UI/UX Design</h2>
+            <p>Creating intuitive and beautiful user interfaces with focus on user experience and accessibility.</p>
+        </div>
+
+        <div class="whatidocards hidden">
+            <h2>Performance Optimization</h2>
+            <p>Ensuring fast load times, smooth animations, and optimal performance across all devices.</p>
+        </div>
+
+    </section>
+    <!-- <hr class="line"> -->
+
+    <footer>
+
+        <a href="home.html" class="logo">
+            <img src="assets/img/logo.png" alt="Asmaa Logo">
+        </a>
+        <p>Full Stack Developer crafting beautiful and functional web experiences.</p>
+        <!-- <hr class="hr"> -->
+        <!-- <h3 class="quicklinks">Quick Links</h3>  -->
+        <ul class="footpages">
+            <li><a class="fp" href="index.html">Home</a></li>
+            <li><i class="fa fa-heart heart-icon" aria-hidden="true"></i></li>
+            <li><a class="fp" href="about.html">About</a></li>
+            <li><i class="fa fa-heart heart-icon" aria-hidden="true"></i></li>
+            <li><a class="fp" href="projects.html">Projects</a></li>
+            <li><i class="fa fa-heart heart-icon" aria-hidden="true"></i></li>
+            <li><a class="fp" href="services.html">Services</a></li>
+            <li><i class="fa fa-heart heart-icon" aria-hidden="true"></i></li>
+            <li><a class="fp" href="contact.html">Contact</a></li>
+
+        </ul>
+        <!-- <hr class="hr"> -->
+        <h3 class="footbold ready">Ready To Work With Me ?</h3>
+        <div class="scroll-down">
+            <i class="fa-solid fa-chevron-down"></i>
+            <i class="fa-solid fa-chevron-down"></i>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <br>
+
+        <a href="contact.html" class=" b2">
+            Let's Get In Touch
+            <i class="fa fa-heart heart-icon" aria-hidden="true"></i>
+        </a>
+        <br><br>
+        <p class="footpara">© 2026 Asmaa. All rights reserved</p>
+    </footer>
+
+
+
+
+    <script>
+        const links = document.querySelectorAll(".nav-links a");
+
+        // active link logic
+        links.forEach(link => {
+            if (window.location.pathname.endsWith(link.getAttribute("href"))) {
+                link.classList.add("active");
+            }
+        });
+
+        // navbar scroll effect
+        window.addEventListener("scroll", function () {
+            const navbar = document.querySelector(".navbar");
+
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+
+        });
+        const menu = document.querySelector(".menu-toggle");
+        const nav = document.querySelector(".nav-links");
+
+        menu.addEventListener("click", () => {
+            nav.classList.toggle("active");
+            menu.classList.toggle("active");
+        });
+const elements = document.querySelectorAll('.hidden');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    } else {
+      entry.target.classList.remove('show');
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+elements.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+h1 { font-size: 5rem; color: var(--primary-color); font-style: italic; }
+.hero-p { color: #a09c9c; text-align: center; }
+.hero-text { display: flex; align-items: center; flex-direction: column; }
+.card { background-color: #fff; padding: 30px; border-radius: 15px; transition: 0.3s; border: 2px solid transparent; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; padding: 40px 80px; }
+.value-icons { color: var(--primary-color); background-color: #b6b4dc6f; padding: 10px; border-radius: 5px; font-size: 1.5rem; margin-bottom: 18px; }
+.card:hover { transform: scale(1.05); border: 2px solid var(--primary-color); box-shadow: 0 10px 25px rgba(136, 133, 199, 0.3); }
+.card i { display: block; margin-bottom: 15px; width: 50px; }
+.card h2 { margin-bottom: 10px; }
+.card p { line-height: 1.6; color: #a09c9c; }
+.start-project { background: linear-gradient(135deg, #bdbbea, #fff); padding: 20px; display: flex; flex-direction: column; gap: 10px; color: black; border-radius: 15px; text-align: center; width: 90%; margin: 0 auto; }
+.start-project p { color: #a09c9c; }
+.start-project a { color: var(--primary-color); background: transparent; text-decoration: none; border: 2px solid var(--primary-color); border-radius: 10px; padding: 10px 20px; transition: 0.3s; }
+.start-project a:hover { background: var(--primary-color); color: #fff; }
+.start-project a:hover .heart-icon { color: #fff; }
+.heart-icon { color: var(--primary-color); }
+@media (max-width: 575px) {
+  h1 { font-size: 2.2rem; }
+  .hero-text { margin-top: 100px; }
+  .cards { grid-template-columns: repeat(1, 1fr); padding: 40px 24px; }
+  .card { border: 1.8px solid var(--primary-color); box-shadow: 0 10px 25px rgba(136, 133, 199, 0.3); }
+  .start-project { min-height: 32vh; width: 100%; justify-content: center; align-items: center; }
+}
+@media (min-width: 576px) and (max-width: 991px) {
+  h1 { font-size: 3.3rem; }
+  .hero-text { margin-top: 100px; }
+  .cards { grid-template-columns: repeat(2, 1fr); padding: 40px 32px; }
+  .card { border: 1.8px solid var(--primary-color); box-shadow: 0 10px 25px rgba(136, 133, 199, 0.3); }
+  .start-project { min-height: 32vh; }
+}
+@media (min-width: 992px) {
+  .hero-text { margin-top: 100px; }
+  h1 { font-size: 4.4rem; }
+  .start-project { min-height: 32vh; }
+  .start-project h2 { margin-bottom: 20px; }
+  .start-project p, .start-project a { margin-bottom: 30px; font-size: 1.25rem; }
+}

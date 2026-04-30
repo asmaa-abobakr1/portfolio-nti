@@ -1,0 +1,31 @@
+<main class="main-container">
+  <section class="hero">
+    <div class="hero-text">
+      <h1>{{ pageHeader.title }}</h1>
+      <p class="hero-p">{{ pageHeader.subtitle }}</p>
+    </div>
+  </section>
+
+  <section class="cards">
+    <div class="hero-cards">
+      <article class="card hidden" *ngFor="let project of projects">
+        <img [src]="project.image" [alt]="project.title" class="project-img">
+        <h2>{{ project.title }}</h2>
+        <p>{{ project.description }}</p>
+        <div class="tools">
+          <span *ngFor="let tool of project.tools">{{ tool }}</span>
+        </div>
+        <div class="links">
+          <a *ngIf="project.liveDemo" class="ancor" [href]="project.liveDemo" target="_blank" rel="noreferrer">
+            <i class="fa fa-arrow-right-from-bracket"></i>
+            <span>Live Demo</span>
+          </a>
+          <a *ngIf="project.githubCode" class="ancor" [href]="project.githubCode" target="_blank" rel="noreferrer">
+            <i class="fa-brands fa-github"></i>
+            <span>Code</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>

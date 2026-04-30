@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asmaa's Unified Pro Dashboard | 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. THEME & BASE STYLES --- */
+        :root {
+            --primary: #8885c7;
+            --primary-light: #a3a0d9;
+            --secondary-bg: #f9f9ff;
+            --add-form-bg: #fdfbff; /* اللافندر الفاتح جداً للخلفية */
+            --white: #ffffff;
+            --danger: #ff5f5f;
+            --success: #2ecc71;
+            --text-main: #334155;
+            --text-muted: #94a3b8;
+            --border-color: #f1f5f9;
+            --sidebar-width: 280px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--secondary-bg); display: flex; color: var(--text-main); }
+
+        /* --- 2. SIDEBAR STYLES --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--white);
+            height: 100vh;
+            position: fixed;
+            border-right: 1px solid rgba(136, 133, 199, 0.15);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+        .sidebar h2 { color: var(--primary); font-size: 24px; font-weight: 800; margin-bottom: 50px; text-align: center; }
+        .nav-link {
+            padding: 16px 20px;
+            color: #64748b;
+            text-decoration: none;
+            border-radius: 16px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+        }
+        .nav-link:hover, .nav-link.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 10px 20px rgba(136, 133, 199, 0.2);
+        }
+
+        /* --- 3. MAIN AREA STYLES --- */
+        .main { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); padding: 50px; }
+        .section { display: none; animation: slideIn 0.4s ease; }
+        .section.active { display: block; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- 4. CARDS & GENERAL UI --- */
+        .card { background: var(--white); padding: 30px; border-radius: 24px; box-shadow: 0 4px 30px rgba(0,0,0,0.02); margin-bottom: 30px; border: 1px solid var(--border-color); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .card h3 { color: #1e293b; font-size: 20px; font-weight: 700; }
+        
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 13px; color: var(--text-muted); text-transform: uppercase; }
+        input, textarea { 
+            width: 100%; padding: 14px; border: 2px solid var(--border-color); border-radius: 14px; outline: none; transition: 0.3s; background: #fafbff;
+        }
+        input:focus, textarea:focus { border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px rgba(136, 133, 199, 0.08); }
+
+        /* --- 5. UNIFIED "ADD FORM" STYLE --- */
+        .unified-add-form {
+            background: var(--add-form-bg);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1.5px dashed var(--primary-light); /* الـ dashed border المميز */
+            margin-bottom: 30px;
+        }
+        .unified-add-form h4 { color: var(--primary); margin-bottom: 20px; font-size: 16px; font-weight: 700; }
+
+        /* --- 6. BUTTONS --- */
+        .btn { padding: 12px 24px; border: none; border-radius: 14px; cursor: pointer; font-weight: 700; transition: 0.3s; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-add-action { background: var(--primary); color: white; width: 100%; margin-top: 10px; justify-content: center; } /* زرار الإضافة العريض */
+        .btn-edit { background: #f0f0ff; color: var(--primary); }
+        .btn-soft-delete { background: #fff5f5; color: var(--danger); border: 1px solid #ffecec; }
+        .btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+
+        /* --- 7. DATA TABLES --- */
+        .data-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; margin-top: 10px; }
+        .data-table tr { background: #fff; transition: 0.2s; }
+        .data-table td { padding: 20px; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .data-table td:first-child { border-left: 1px solid var(--border-color); border-radius: 16px 0 0 16px; }
+        .data-table td:last-child { border-right: 1px solid var(--border-color); border-radius: 0 16px 16px 0; text-align: right; }
+        
+        .badge { padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; background: #f1f0ff; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2>Dareen.Dev</h2>
+        <div class="nav-link active" onclick="showTab('home', this)"><i class="fa fa-home"></i> Home Page</div>
+        <div class="nav-link" onclick="showTab('about', this)"><i class="fa fa-user-tie"></i> About Page</div>
+        <div class="nav-link" onclick="showTab('projects', this)"><i class="fa fa-code"></i> Projects</div>
+        <div class="nav-link" onclick="showTab('services', this)"><i class="fa fa-sparkles"></i> Services</div>
+        <div class="nav-link" onclick="showTab('contact', this)"><i class="fa fa-envelope"></i> Messages</div>
+    </aside>
+
+    <main class="main">
+        
+        <div id="home" class="section active">
+            <div class="card">
+                <div class="card-header"><h3>Hero Settings</h3><button class="btn btn-primary"><i class="fa fa-save"></i> Save All</button></div>
+                <div class="form-grid">
+                    <div class="form-group"><label>Full Name</label><input type="text" value="Asmaa Ahmed Abobakr"></div>
+                    <div class="form-group"><label>Job Title</label><input type="text" value="Front-end Developer"></div>
+                </div>
+                <div class="form-group"><label>Main Description</label><textarea rows="3"></textarea></div>
+                <div class="form-grid">
+                    <div class="form-group"><label>Github URL</label><input type="text"></div>
+                    <div class="form-group"><label>LinkedIn URL</label><input type="text"></div>
+                </div>
+                <div class="form-group"><label>Profile Image (POST only)</label><input type="file"></div>
+            </div>
+
+            <div class="card">
+                <h3>Inner Services List</h3>
+                <div class="unified-add-form">
+                    <h4>Add New Inner Service</h4>
+                    <div class="form-grid">
+                        <input type="text" placeholder="Service Title">
+                        <input type="text" placeholder="Short Description">
+                    </div>
+                    <button class="btn btn-add-action"><i class="fa fa-plus"></i> Add Service</button>
+                </div>
+                <table class="data-table">
+                    <tbody>
+                        <tr>
+                            <td><strong>Web Development</strong><br><small>Responsive layouts</small></td>
+                            <td><button class="btn btn-edit">Edit</button> <button class="btn btn-soft-delete">Soft Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="about" class="section">
+            <div class="card">
+                <div class="card-header"><h3>Biography & Stats</h3><button class="btn btn-primary">Update Bio</button></div>
+                <div class="form-group"><label>Personal Bio (Required)</label><textarea rows="4"></textarea></div>
+                <div class="form-grid">
+                    <div class="form-group"><label>Years of Exp (stats)</label><input type="text" value="1+"></div>
+                    <div class="form-group"><label>Projects Done (stats)</label><input type="text" value="20+"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Experiences Timeline</h3>
+                <div class="unified-add-form">
+                    <h4>Add New Experience</h4>
+                    <div class="form-grid">
+                        <div class="form-group"><label>Role</label><input type="text"></div>
+                        <div class="form-group"><label>Company</label><input type="text"></div>
+                        <div class="form-group"><label>Duration (Text)</label><input type="text" placeholder="e.g., 2024 - Present"></div>
+                        <div class="form-group"><label>Location (Text)</label><input type="text" placeholder="e.g., Remote"></div>
+                    </div>
+                    <button class="btn btn-add-action"><i class="fa fa-plus"></i> Push Experience</button>
+                </div>
+                <table class="data-table">
+                    <thead><tr><th>Experience Info</th><th>Location</th><th>Action</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Frontend Intern</strong> @ Siemens<br><small>2025 - 2026</small></td>
+                            <td><span class="badge">Remote</span></td>
+                            <td><button class="btn btn-edit"><i class="fa fa-pen"></i></button> <button class="btn btn-soft-delete">Soft Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div class="card">
+                    <h3>Skills Categories</h3>
+                    <div class="unified-add-form">
+                        <h4>Add Skill Set</h4>
+                        <input type="text" placeholder="Category (e.g., Frontend)" style="margin-bottom:10px">
+                        <textarea placeholder="Techs (comma separated)"></textarea>
+                        <button class="btn btn-add-action"><i class="fa fa-plus"></i> Add Skill</button>
+                    </div>
+                    <table class="data-table">
+                        <tbody><tr><td>Frontend: React, JS</td><td><button class="btn btn-soft-delete">Del</button></td></tr></tbody>
+                    </table>
+                </div>
+                <div class="card">
+    <h3>Core Values</h3>
+    <div class="unified-add-form">
+        <h4>Add New Core Value</h4>
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Icon Class</label>
+                <input type="text" placeholder="e.g., fa-heart or fa-code">
+            </div>
+            <div class="form-group">
+                <label>Value Title</label>
+                <input type="text" placeholder="e.g., Quality First">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Value Description</label>
+            <textarea placeholder="Write a short description of this value..." rows="2"></textarea>
+        </div>
+        <button class="btn btn-add-action"><i class="fa fa-plus"></i> Add Value to Schema</button>
+    </div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Icon</th>
+                <th>Value & Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><i class="fa fa-heart" style="color:var(--primary)"></i></td>
+                <td><strong>Commitment</strong><br><small>I always deliver my projects on time with high quality.</small></td>
+                <td><button class="btn btn-soft-delete">Del</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+                    د
+                </div>
+            </div>
+        </div>
+
+        <div id="projects" class="section">
+            <div class="card">
+                <div class="card-header"><h3>Project Page Header</h3><button class="btn btn-primary">Save Header</button></div>
+                <div class="form-grid"><input type="text" value="My Projects"><input type="text" value="a showcase..."></div>
+            </div>
+            <div class="card">
+                <h3>Independent Projects</h3>
+                <div class="unified-add-form">
+                    <h4>Add New Project</h4>
+                    <div class="form-grid">
+                        <div class="form-group"><label>Title</label><input type="text"></div>
+                        <div class="form-group"><label>Tools (React, Node)</label><input type="text"></div>
+                        <div class="form-group"><label>Live Demo</label><input type="text"></div>
+                        <div class="form-group"><label>GitHub Code</label><input type="text"></div>
+                    </div>
+                    <div class="form-group"><label>Description</label><textarea rows="3"></textarea></div>
+                    <button class="btn btn-add-action"><i class="fa fa-plus"></i> Upload Project</button>
+                </div>
+                <table class="data-table">
+                    <tbody>
+                        <tr>
+                            <td><strong>Campus Connect</strong><br><small> Cairo University App </small></td>
+                            <td><button class="btn btn-edit">Update</button> <button class="btn btn-soft-delete">Soft Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="services" class="section">
+            <div class="card">
+                <h3>Page Headers</h3>
+                <div class="form-grid"><input type="text" placeholder="Hero Title"><input type="text" placeholder="Footer Title"></div>
+                <textarea placeholder="Footer Description" style="margin-top:15px"></textarea>
+                <button class="btn btn-primary" style="margin-top:15px">Save Header</button>
+            </div>
+            <div class="card">
+                <h3>Services Cards</h3>
+                <div class="unified-add-form">
+                    <h4>Create Service Card</h4>
+                    <div class="form-grid"><input type="text" placeholder="Icon"><input type="text" placeholder="Title"></div>
+                    <textarea placeholder="Description" style="margin-top:15px"></textarea>
+                    <button class="btn btn-add-action"><i class="fa fa-plus"></i> Push to Service List</button>
+                </div>
+                <table class="data-table">
+                    <tbody>
+                        <tr><td>UI/UX Design</td><td><button class="btn btn-edit">Edit</button> <button class="btn btn-soft-delete">Soft Delete</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+       <div id="contact" class="section">
+    <div class="card">
+        <div class="card-header">
+            <h3><i class="fa fa-inbox"></i> Active Inbox</h3>
+            <span class="badge" style="background:var(--primary); color:white">New Messages</span>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Sender Info</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Youssef Ghonim</strong><br><small>youssef@example.com</small></td>
+                    <td><p style="max-width: 300px; font-size: 13px;">Hi Asmaa</p></td>
+                    <td><small>2026-04-30</small></td>
+                    <td>
+                        <button class="btn btn-soft-delete"><i class="fa fa-trash"></i> Move to Trash</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card" style="border: 1px solid #fee2e2;">
+        <div class="card-header">
+            <h3 style="color:var(--danger)"><i class="fa fa-trash-alt"></i> Trash (Soft Deleted)</h3>
+            <button class="btn btn-outline" style="border-color:#fee2e2; color:var(--danger)">Empty Trash</button>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 15px;">هذه الرسائل تم مسحها بواسطة الأدمن وتظهر هنا للأرشفة فقط.</p>
+        
+        <table class="data-table" style="opacity: 0.7;">
+            <thead>
+                <tr>
+                    <th>Sender</th>
+                    <th>Message</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: #fffafa;">
+                    <td><strong>Naglaa Mohamed</strong></td>
+                    <td><small>Done with the SRS document...</small></td>
+                    <td><span class="badge" style="background:#ffecec; color:var(--danger)">Archived</span></td>
+                    <td>
+                        <button class="btn btn-edit" title="Restore"><i class="fa fa-undo"></i> Restore</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+    </main>
+
+    <script>
+        function showTab(id, el) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            el.classList.add('active');
+        }
+    </script>
+</body>
+</html>

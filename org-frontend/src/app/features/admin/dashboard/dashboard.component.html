@@ -1,0 +1,221 @@
+<aside class="sidebar">
+    <h2>Asmaa.Dev</h2>
+    <button
+      type="button"
+      class="nav-link"
+      *ngFor="let tab of tabs"
+      [class.active]="activeTab === tab[0]"
+      (click)="showTab(tab[0])"
+    >
+      <i [class]="tab[1]"></i> {{ tab[2] }}
+    </button>
+</aside>
+
+<main class="main">
+    <p class="save-status" *ngIf="statusMessage">{{ statusMessage }}</p>
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+    
+    <div id="home" class="section" [class.active]="activeTab === 'home'">
+        <div class="card">
+            <div class="card-header">
+                <h3>Home Hero Settings</h3>
+                <button class="btn btn-primary" (click)="saveHome()" [disabled]="saving"><i class="fa fa-save"></i> Save Changes</button>
+            </div>
+            <div class="form-grid">
+                <div class="form-group"><label>Full Name</label><input type="text" [(ngModel)]="homeForm.name"></div>
+                <div class="form-group"><label>Job Title</label><input type="text" [(ngModel)]="homeForm.jobTitle"></div>
+            </div>
+            <div class="form-group"><label>Main Description</label><textarea rows="3" [(ngModel)]="homeForm.mainDescription"></textarea></div>
+            <div class="form-grid">
+                <div class="form-group"><label>Github</label><input type="text" [(ngModel)]="homeForm.socialLinks!.github"></div>
+                <div class="form-group"><label>LinkedIn</label><input type="text" [(ngModel)]="homeForm.socialLinks!.linkedin"></div>
+            </div>
+            <div class="form-group">
+                <label>Profile Image (Upload)</label>
+                <input type="file" accept="image/*" (change)="selectProfileImage($event)">
+                <small *ngIf="selectedProfileImage">{{ selectedProfileImage.name }}</small>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Inner Services List</h3>
+            </div>
+            <div class="unified-add-form">
+                <h4>Add New Inner Service</h4>
+                <div class="form-grid">
+                    <input type="text" placeholder="Service Title" [(ngModel)]="newHomeService.title">
+                    <input type="text" placeholder="Short Description" [(ngModel)]="newHomeService.description">
+                </div>
+                <button class="btn btn-primary btn-add-action" (click)="addHomeService()" [disabled]="saving">Add New</button>
+            </div>
+            <table class="data-table">
+                <tbody>
+                    <tr *ngFor="let service of activeHomeServices">
+                        <td><strong>{{ service.title }}</strong><br><small>{{ service.description }}</small></td>
+                        <td>
+                            <button class="btn btn-soft-delete" (click)="removeHomeService(service)" [disabled]="saving">Soft Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="about" class="section" [class.active]="activeTab === 'about'">
+        <div class="card">
+            <div class="card-header"><h3>Bio & Stats</h3><button class="btn btn-primary" (click)="saveAbout()" [disabled]="saving">Update Bio</button></div>
+            <div class="form-group"><label>Personal Bio (Required)</label><textarea rows="4" [(ngModel)]="aboutForm.bio"></textarea></div>
+            <div class="form-grid">
+                <div class="form-group"><label>Years of Exp (stats)</label><input type="text" [(ngModel)]="aboutForm.stats!.yearsExperience"></div>
+                <div class="form-group"><label>Projects Done (stats)</label><input type="text" [(ngModel)]="aboutForm.stats!.projectsCompleted"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><h3>Experiences Timeline</h3></div>
+            <div class="unified-add-form form-grid" style="margin-bottom: 20px;">
+                <div class="form-group"><label>Role</label><input type="text" [(ngModel)]="newExperience.role"></div>
+                <div class="form-group"><label>Company</label><input type="text" [(ngModel)]="newExperience.company"></div>
+                <div class="form-group"><label>Duration (Text)</label><input type="text" placeholder="Jan 2024 - Present" [(ngModel)]="newExperience.duration"></div>
+                <div class="form-group"><label>Location (Text)</label><input type="text" placeholder="Remote / Cairo" [(ngModel)]="newExperience.location"></div>
+                <button class="btn btn-primary btn-add-action" style="grid-column: 1 / -1;" (click)="addExperience()" [disabled]="saving">Add Experience</button>
+            </div>
+            <table class="data-table">
+                <thead><tr><th>Experience Info</th><th>Location</th><th>Action</th></tr></thead>
+                <tbody>
+                    <tr *ngFor="let experience of activeExperiences">
+                        <td><strong>{{ experience.role }}</strong> @ {{ experience.company }}<br><small>{{ experience.duration }}</small></td>
+                        <td><span class="badge">{{ experience.location }}</span></td>
+                        <td><button class="btn btn-soft-delete" (click)="removeExperience(experience)" [disabled]="saving">Soft Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="form-grid">
+            <div class="card">
+                <h3>Skills Categories <button class="btn btn-primary btn-sm">Add</button></h3>
+                <input type="text" placeholder="Category Name" style="margin-bottom:10px">
+                <textarea placeholder="Techs (Comma separated)"></textarea>
+                <table class="data-table">
+                    <tbody><tr><td>Frontend: React, JS</td><td><button class="btn btn-soft-delete">Del</button></td></tr></tbody>
+                </table>
+            </div>
+            <div class="card">
+                <h3>Core Values <button class="btn btn-primary btn-sm">Add</button></h3>
+                <input type="text" placeholder="Icon Class" style="margin-bottom:10px">
+                <input type="text" placeholder="Value Title">
+                <table class="data-table">
+                    <tbody><tr><td>Transparency</td><td><button class="btn btn-soft-delete">Del</button></td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="projects" class="section" [class.active]="activeTab === 'projects'">
+        <div class="card">
+            <div class="card-header"><h3>Project Page Header</h3><button class="btn btn-primary" (click)="saveProjectHeader()" [disabled]="saving">Save Header</button></div>
+            <div class="form-grid"><input type="text" [(ngModel)]="projectHeader.title"><input type="text" [(ngModel)]="projectHeader.subtitle"></div>
+        </div>
+        <div class="card">
+            <h3>Create New Project</h3>
+            <div class="form-grid">
+                <div class="form-group"><label>Title</label><input type="text" [(ngModel)]="newProject.title"></div>
+                <div class="form-group"><label>Tools (Text Array)</label><input type="text" placeholder="React, Node, Mongo" [(ngModel)]="newProject.toolsText"></div>
+                <div class="form-group"><label>Live Demo</label><input type="text" [(ngModel)]="newProject.liveDemo"></div>
+                <div class="form-group"><label>GitHub Code</label><input type="text" [(ngModel)]="newProject.githubCode"></div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label>Project Image</label>
+                    <input type="file" accept="image/*" (change)="selectProjectImage($event)">
+                    <small *ngIf="selectedProjectImage">{{ selectedProjectImage.name }}</small>
+                </div>
+            </div>
+            <div class="form-group"><label>Description</label><textarea rows="3" [(ngModel)]="newProject.description"></textarea></div>
+            <button class="btn btn-primary btn-add-action" (click)="addProject()" [disabled]="saving">Add Independent Project</button>
+        </div>
+        <div class="card">
+            <h3>Projects List</h3>
+            <table class="data-table">
+                <tbody>
+                    <tr *ngFor="let project of projects">
+                        <td><strong>{{ project.title }}</strong><br><small>{{ project.description }}</small></td>
+                        <td><button class="btn btn-soft-delete" (click)="deleteProject(project)" [disabled]="saving">Soft Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="services" class="section" [class.active]="activeTab === 'services'">
+        <div class="card">
+            <div class="card-header">
+                <h3><i class="fa fa-heading"></i> Services Hero & Footer</h3>
+                <button class="btn btn-primary" (click)="saveServicesContent()" [disabled]="saving">Update Page</button>
+            </div>
+            <div class="form-grid">
+                <input type="text" placeholder="Hero Title" [(ngModel)]="serviceContent.hero.title">
+                <input type="text" placeholder="Footer Title" [(ngModel)]="serviceContent.footerAction.title">
+            </div>
+            <textarea placeholder="Footer Description" style="margin-top:15px" [(ngModel)]="serviceContent.footerAction.description"></textarea>
+        </div>
+        <div class="card">
+            <h3><i class="fa fa-plus-circle"></i> Add New Service Card</h3>
+            <div class="form-grid"><input type="text" placeholder="Icon" [(ngModel)]="newService.icon"><input type="text" placeholder="Title" [(ngModel)]="newService.title"></div>
+            <textarea placeholder="Description" style="margin-top:15px" [(ngModel)]="newService.description"></textarea>
+            <button class="btn btn-primary btn-add-action" style="margin-top:10px" (click)="addService()" [disabled]="saving">Push to servicesList</button>
+        </div>
+        <div class="card">
+            <h3><i class="fa fa-list"></i> Existing Services</h3>
+            <table class="data-table">
+                <tbody>
+                    <tr *ngFor="let service of serviceContent.services">
+                        <td><strong>{{ service.title }}</strong><br><small>{{ service.description }}</small></td>
+                        <td><button class="btn btn-soft-delete" (click)="deleteService(service)" [disabled]="saving">Soft Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="contact" class="section" [class.active]="activeTab === 'contact'">
+        <div class="card">
+            <div class="card-header"><h3>Contact Page Info</h3><button class="btn btn-primary">Update Info</button></div>
+            <div class="form-grid">
+                <div class="form-group"><label>Display Email</label><input type="text"></div>
+                <div class="form-group"><label>Display Location</label><input type="text"></div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Messages Inbox (Active)</h3>
+            <table class="data-table">
+                <thead><tr><th>Sender</th><th>Email</th><th>Message</th><th>Action</th></tr></thead>
+                <tbody>
+                    <tr *ngFor="let message of messages">
+                        <td><strong>{{ message.name }}</strong></td>
+                        <td>{{ message.email }}</td>
+                        <td>{{ message.message }}</td>
+                        <td><button class="btn btn-soft-delete" (click)="moveMessageToTrash(message)">Move to Trash</button></td>
+                    </tr>
+                    <tr *ngIf="!messages.length">
+                        <td colspan="4"><strong>No active messages yet.</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card">
+            <h3 style="color:var(--danger)">Trash (Soft Deleted Messages)</h3>
+            <table class="data-table" style="opacity:0.6">
+                <tbody>
+                    <tr *ngFor="let message of archivedMessages">
+                        <td>{{ message.name }}</td>
+                        <td>{{ message.email }}</td>
+                        <td>{{ message.message }}</td>
+                        <td><span class="badge" style="background:#ffecec; color:var(--danger)">Archived</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>

@@ -1,0 +1,253 @@
+.home-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 120px 60px 0;
+  gap: 60px;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 1;
+}
+
+.h2home {
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  letter-spacing: 2px;
+}
+
+.name {
+  color: var(--primary-color);
+}
+
+.h1 {
+  font-size: 6rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.phome {
+  font-size: 1rem;
+  color: #a09c9c;
+  max-width: 600px;
+}
+
+.homebuttons,
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.viewmywork,
+.getintouch {
+  display: inline-block;
+  margin: 10px;
+}
+
+.social-icons a {
+  color: #1f1f1f;
+  font-size: 30px;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: var(--primary-color);
+  transform: translateY(-5px);
+}
+
+.githubhome,
+.linkedinhome,
+.emailhome {
+  margin-right: 40px;
+}
+
+.hero-image img {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid var(--primary-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+  margin: 20px auto 0;
+  display: block;
+}
+
+.hero-image img:hover {
+  transform: scale(1.05);
+}
+
+.whatido {
+  padding: 80px 50px;
+  text-align: center;
+}
+
+.whatido h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.what {
+  font-style: italic;
+}
+
+.whatido p {
+  font-size: 1.1rem;
+  color: #a09c9c;
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+}
+
+.whatidocards {
+  width: 90%;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.whatidocards:hover {
+  border: 3px solid var(--primary-color);
+}
+
+.whatidocards h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--secondary-color);
+}
+
+@media (max-width: 575px) {
+  .home-hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .hero-left {
+    display: contents;
+  }
+
+  .hero-text {
+    order: 1;
+  }
+
+  .hero-image {
+    order: 2;
+    display: flex;
+    justify-content: center;
+  }
+
+  .homebuttons {
+    order: 3;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .social-icons {
+    order: 4;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    margin-left: 40px;
+  }
+
+  .hero-image img {
+    width: 280px;
+    height: 280px;
+  }
+
+  .h1 {
+    font-size: 3.5rem;
+  }
+
+  .phome {
+    font-size: 0.8rem;
+  }
+
+  .whatidocards {
+    border: 1.8px solid var(--primary-color);
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  .home-hero {
+    justify-content: center;
+    gap: 20px;
+    padding: 120px 20px 0;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .hero-left,
+  .hero-right {
+    flex: 1;
+    min-width: 250px;
+  }
+
+  .hero-image img {
+    width: 320px;
+    height: 320px;
+  }
+
+  .h1 {
+    font-size: 2.6rem;
+  }
+
+  .phome {
+    font-size: 0.7rem;
+  }
+
+  .whatidocards {
+    border: 1.8px solid var(--primary-color);
+  }
+}
+
+@media (min-width: 992px) {
+  .home-hero {
+    justify-content: space-evenly;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .hero-text {
+    align-items: center;
+    text-align: center;
+  }
+
+  .homebuttons {
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 400px;
+    transform: translateX(20px);
+  }
+
+  .social-icons {
+    justify-content: center;
+    margin-right: 50px;
+    width: 128%;
+  }
+
+  .hero-image img {
+    width: 400px;
+    height: 400px;
+  }
+
+  .h1,
+  .phome,
+  .h2home {
+    transform: translateX(55px);
+  }
+}

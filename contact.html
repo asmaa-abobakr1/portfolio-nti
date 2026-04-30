@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/nav-footer.css">
+    <link rel="stylesheet" href="assets/css/contact.css">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+            <a href="home.html" class="logo">
+                <img src="assets/img/logo.png" alt="Asmaa Logo" class="logo-img">
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+</header>
+</body>
+
+<main class="hero">
+    <section class="hero-text">
+        <h1>Get In Touch</h1>
+        <p>Have a project in mind or just want to chat? <br>Feel free to reach out.
+             I'm always open to discussing new opportunities and collaborations.</p>
+    </section>
+
+
+
+
+    <section class="contact-information">
+            <h2>Contact Information</h2>
+        
+        <div class="email hidden">
+            <i class="fa-regular fa-envelope value icon"></i>
+            <div class="information-text">
+            <h3>Email</h3>
+            <p>asmaaahmed29699@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="location hidden">
+            <i class="fa-solid fa-location-dot icon"></i>
+            <div class="information-text">
+            <h3>Location</h3>
+            <p>Remote / Available Worldwide</p>
+            </div>
+        </div>
+
+    </section>
+    
+    <section class="together-box hidden">
+        
+            <h2>Let's Work Together</h2>
+            <p>I'm currently available for freelance projects and full-time opportunities.<br>
+                 If you have a project you'd like to discuss, don't hesitate to reach out!</p>
+        
+    </section>
+
+    <section class="form-box">
+         <form action="" method="">
+
+                <!-- Name -->
+            <label for="name">Name</label><br>
+            <input type="text" id="name" name="name" placeholder="Your Name"><br>
+
+            <!-- Email -->
+             <label for="email">Email</label><br>
+            <input type="email" id="email" name="email" placeholder="your.email@example.com"><br>
+
+            <!-- Message -->
+             <label for="message">Message</label><br>
+            <textarea type="text-erea" id="message" name="message" placeholder="Tell me about your project..."></textarea><br>
+
+
+            <!-- send button-->
+             <button>
+                <i class="fa-regular fa-paper-plane"></i> Send Message
+             </button>
+         </form>
+
+
+
+    </section>
+</main>
+
+
+<footer>
+
+            <a href="home.html" class="logo">
+                <img src="assets/img/logo.png" alt="Asmaa Logo">
+            </a>
+            <p>Full Stack Developer crafting beautiful and functional web experiences.</p>
+            <!-- <hr class="hr"> -->
+            <!-- <h3 class="quicklinks">Quick Links</h3>  -->
+            <ul class="footpages">
+                <li><a href="index.html">Home</a></li>
+                <i class="fa fa-heart heart-icon" aria-hidden="true"></i>
+                <li><a href="about.html">About</a></li>
+                <i class="fa fa-heart heart-icon" aria-hidden="true"></i>
+                <li><a href="projects.html">Projects</a></li>
+                <i class="fa fa-heart heart-icon" aria-hidden="true"></i>
+                <li><a href="services.html">Services</a></li>
+                <i class="fa fa-heart heart-icon" aria-hidden="true"></i>
+                <li><a href="contact.html">Contact</a></li>
+
+            </ul>
+            <!-- <hr class="hr"> -->
+            <h3 class="footbold ready">Ready To Work With Me ?</h3>
+            <div class="scroll-down">
+                <i class="fa-solid fa-chevron-down"></i>
+                <i class="fa-solid fa-chevron-down"></i>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <br>
+
+            <a href="contact.html" class=" b2">
+                Let's Get In Touch
+                <i class="fa fa-heart heart-icon" aria-hidden="true"></i>
+            </a>
+            <br><br>
+            <p class="footpara">© 2026 Asmaa. All rights reserved.</p>
+        </footer>
+
+
+
+
+        <script>
+        const links = document.querySelectorAll(".nav-links a");
+
+        // active link logic
+        links.forEach(link => {
+            if (window.location.pathname.endsWith(link.getAttribute("href"))) {
+                link.classList.add("active");
+            }
+        });
+
+        // navbar scroll effect
+        window.addEventListener("scroll", function () {
+            const navbar = document.querySelector(".navbar");
+
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+
+        });
+        const menu = document.querySelector(".menu-toggle");
+        const nav = document.querySelector(".nav-links");
+
+        menu.addEventListener("click", () => {
+            nav.classList.toggle("active");
+            menu.classList.toggle("active");
+        });
+const elements = document.querySelectorAll('.hidden');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    } else {
+      entry.target.classList.remove('show');
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+elements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+footer {
+  text-align: center;
+  background-color: white;
+  color: black;
+  margin-top: 10px;
+  padding: 20px 30px;
+  position: relative;
+  border-radius: 30px;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+}
+
+.logo img {
+  width: 140px;
+  transition: 0.3s;
+}
+
+footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 0;
+  color: black;
+  margin-bottom: 20px;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer p {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: #a09c9c;
+  margin-bottom: 20px;
+}
+
+.footpages a {
+  color: var(--secondary-color);
+  transition: 0.3s;
+  margin-right: 5px;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  padding: 5px 10px;
+  border-radius: 7px;
+}
+
+.footpages a:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-5px);
+  color: white;
+}
+
+.heart-icon {
+  color: var(--primary-color);
+  margin: 0 5px;
+}
+
+.footbold {
+  margin-bottom: 25px;
+  font-style: italic;
+  margin-top: 25px;
+}
+
+.ready {
+  font-size: 24px;
+}
+
+.scroll-down {
+  margin-top: 25px;
+  font-size: 22px;
+  color: var(--primary-color);
+  animation: floatArrow 1.5s infinite ease-in-out;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+@keyframes floatArrow {
+  0% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 826px) {
+  .footpages {
+    padding: 22px;
+    display: block;
+  }
+
+  .footpages li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
